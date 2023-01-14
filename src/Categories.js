@@ -1,6 +1,6 @@
 //import liraries
 import React, { Component, useEffect, useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image, FlatList, ImageBackground } from 'react-native';
 import img2 from '../assets/brd.jpeg';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -25,61 +25,27 @@ const DATA = [
     },
 ];
 
-const dateView = ({ dataDate }) => (
-    <View>
-
-    </View>
-)
 
 
 
-const Category = ({ data ,navigation}) => (
-    <TouchableOpacity style={{ marginBottom: 12, height: 100 }} onPress={() => navigation.navigate('cate',{
-        categoryName:data
-    }) }>
-        <View style={{ flex: 1, padding: 12 }}>
-            <View style={[
-                StyleSheet.absoluteFillObject,
-                { backgroundColor: 'white', borderRadius: 16,padding:16 }]}>
-                <Text style={styles.title}>{data}</Text>
-                {/* <Text style={styles.categoryName}>{data.username}</Text> */}
-                {/* <Image source={{ uri: data.image }} style={styles.image } /> */}
-            </View>
-        </View>
+
+const Category = ({ data, navigation }) => (
+    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 180, }} onPress={() => navigation.navigate('cate', {
+        categoryName: data
+    })}>
+
+        <ImageBackground source={require('../assets/' + data + '.png')} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.5 }}
+        >
+            <Text style={styles.title}>{data}</Text>
+        </ImageBackground>
+      
+
     </TouchableOpacity>
 );
 
-const Item = ({ data}) => (
 
-    <View style={styles.cardView}>
-        <Image style={styles.img} source={img2} />
-        <View style={styles.inputNumber}>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => { console.log("pressed"); }}
-            >
-                <AntDesign name="pluscircleo" size={16} color="#50E683" />
 
-            </TouchableOpacity>
-            <Text style={{ color: '#50E683', fontSize: '1em', fontWeight: 'bold' }}>
-                0
-            </Text>
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() => { console.log("pressed"); }}
-            >
-                <AntDesign name="minuscircleo" size={16} ssscolor="#50E683" />
-            </TouchableOpacity>
-        </View>
-        <View style={styles.details}>
-            <Text style={{ color: '#50E683' }}>{data.title}</Text>
-            <Text style={{ color: '#50E683' }}>Product Price</Text>
-        </View>
-
-    </View>
-);
-
-const Categories = ({navigation}) => {
+const Categories = ({ navigation }) => {
     // const renderItem = ({ item }) => <Item data={item} />;
     const [categories, setcategories] = useState({});
     const renderItem = ({ item }) => <Category data={item} navigation={navigation} />;
@@ -116,38 +82,44 @@ const Categories = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        padding: 12
+        padding: 12,
 
-        // backgroundColor: '#1D2D44',
+        backgroundColor: 'white',
     },
     image: {
-        width: 100,
-        height: 120,
-        resizeMode: 'contain',
-        position: 'absolute',
-        bottom: 0,
-        left: 12
+        flex: 1,
+        // justifyContent: 'center',
+        backgroundColor: 'black',
+        borderRadius: 16,
+        display: 'flex',
+        width: '100%',
+        // height:100,
+        paddingBottom: 100,
+
     },
     title: {
-        fontWeight:'600',
-        fontSize:16
+        fontWeight: '500',
+        fontSize: 24,
+        padding: 10,
+        color: 'white',
+        textTransform: 'capitalize',
+        // textAlign :'right'
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+
     },
     categoryName: {
-        fontSize:11,
-        opacity:0.7
+        fontSize: 11,
+        opacity: 0.7
     },
     bg: {
 
     },
 
     cardView: {
-        display: 'flex', flexDirection: 'row', alignItems: 'center',
-        // alignContent: 'center',
-        justifyContent: 'space-evenly',
-        borderBottomColor: '#50E683',
-        borderBottomWidth: '1px',
-        padding: 5,
-        margin: 5,
+
+
     },
     inputNumber: {
         width: 85,
@@ -161,8 +133,8 @@ const styles = StyleSheet.create({
         padding: '4px',
     },
     img: {
-        width: 85,
-        height: 75,
+        // width: 85,
+        // height: 75,
         borderRadius: 5,
     },
     details: {

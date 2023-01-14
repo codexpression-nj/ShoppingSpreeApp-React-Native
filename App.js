@@ -3,17 +3,24 @@ import { StyleSheet, Text, View, Image, ImageBackground, TouchableOpacity } from
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Categories from './src/Categories';
+import LandingPage from './src/LandingPage';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='categories'>
+      <Stack.Navigator initialRouteName='landing'>
      
         <Stack.Screen
           name='categories'
-          component={Home}
+          component={Categories}
+          options={{headerTitle:'Discover'}}
+        />
+        <Stack.Screen
+          name='landing'
+          component={LandingPage}
+          options={{headerShown:false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
