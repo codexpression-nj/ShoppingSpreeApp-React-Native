@@ -3,42 +3,42 @@ import React, { Component, useEffect, useState } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, Button, TouchableOpacity, Image, FlatList, ImageBackground } from 'react-native';
 import img2 from '../assets/brd.jpeg';
 import { AntDesign } from '@expo/vector-icons';
-
-
-
-
-// const categoryList = {}
-
-
-const DATA = [
-    {
-        id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-        title: 'First Item',
-    },
-    {
-        id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-        title: 'Second Item',
-    },
-    {
-        id: '58694a0f-3da1-471f-bd96-145571e29d72',
-        title: 'Third Item',
-    },
-];
-
-
-
-
+import Loader from './Loader';
 
 const Category = ({ data, navigation }) => (
-    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 180, }} onPress={() => navigation.navigate('cate', {
+
+    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 140, }} onPress={() => navigation.navigate('cate', {
         categoryName: data
     })}>
+        {data == 'jewelery' ? (
+            <ImageBackground source={require('../assets/jewelery.png')} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.4 }}>
+                <Text style={styles.title}>{data}</Text>
+            </ImageBackground>
 
-        <ImageBackground source={require('../assets/' + data + '.png')} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.5 }}
-        >
-            <Text style={styles.title}>{data}</Text>
-        </ImageBackground>
-      
+        )
+            : data == "women's clothing" ? (
+                <ImageBackground source={require("../assets/womenclothing.png")} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.4 }}>
+                    <Text style={styles.title}>{data}</Text>
+                </ImageBackground>
+            )
+                : data == "men's clothing" ? (
+                    <ImageBackground source={require("../assets/mensclothing.png")} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.4 }}>
+                        <Text style={styles.title}>{data}</Text>
+                    </ImageBackground>
+                )
+                    : data == "electronics" ? (
+                        <ImageBackground source={require("../assets/electronics.png")} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.4 }} >
+                            <Text style={styles.title}>{data}</Text>
+                        </ImageBackground>
+                    )
+                        : (
+                            <>
+                                <Loader />
+                            </>
+                        )
+        }
+
+
 
     </TouchableOpacity>
 );
@@ -48,6 +48,8 @@ const Category = ({ data, navigation }) => (
 const Categories = ({ navigation }) => {
     // const renderItem = ({ item }) => <Item data={item} />;
     const [categories, setcategories] = useState({});
+
+
     const renderItem = ({ item }) => <Category data={item} navigation={navigation} />;
 
     useEffect(() => {
@@ -98,8 +100,8 @@ const styles = StyleSheet.create({
 
     },
     title: {
-        fontWeight: '500',
-        fontSize: 24,
+        fontWeight: '200',
+        fontSize: 30,
         padding: 10,
         color: 'white',
         textTransform: 'capitalize',
@@ -108,41 +110,16 @@ const styles = StyleSheet.create({
         bottom: 0,
         left: 0,
 
-    },
-    categoryName: {
-        fontSize: 11,
-        opacity: 0.7
-    },
-    bg: {
 
     },
+ 
 
     cardView: {
 
 
     },
-    inputNumber: {
-        width: 85,
-        height: 30,
-        borderRadius: 12,
-        backgroundColor: '#33517B',
-        display: 'flex', flexDirection: 'row',
-        alignItems: 'center',
-        // alignContent: 'center',
-        justifyContent: 'space-evenly',
-        padding: '4px',
-    },
-    img: {
-        // width: 85,
-        // height: 75,
-        borderRadius: 5,
-    },
-    details: {
-        display: 'flex',
-        flexDirection: 'column',
-        flexWrap: 'wrap',
-
-    }
+    
+    
 
 });
 

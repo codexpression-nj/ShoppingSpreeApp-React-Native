@@ -4343,6 +4343,19 @@ expo-asset@~8.6.1:
     path-browserify "^1.0.0"
     url-parse "^1.5.9"
 
+expo-asset@~8.6.3:
+  version "8.6.3"
+  resolved "https://registry.yarnpkg.com/expo-asset/-/expo-asset-8.6.3.tgz#fd8e8e8d9a7bbbe3c202459a17746b923fb9bdda"
+  integrity sha512-AOuB0FBbwYUfuLKtQtIsKUvm08d9OAPWZu9NZjUyIvAxmmdVKPUdN5tFUZQXXLRy3SYmk2z76JVQCoaHgJ5wvw==
+  dependencies:
+    blueimp-md5 "^2.10.0"
+    expo-constants "~13.2.2"
+    expo-file-system "~14.1.0"
+    invariant "^2.2.4"
+    md5-file "^3.2.3"
+    path-browserify "^1.0.0"
+    url-parse "^1.5.9"
+
 expo-constants@~13.2.2, expo-constants@~13.2.4:
   version "13.2.4"
   resolved "https://registry.yarnpkg.com/expo-constants/-/expo-constants-13.2.4.tgz#eab4a553f074b2c60ad7a158d3b82e3484a94606"
