@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Categories from './src/Categories';
 import LandingPage from './src/LandingPage';
+import Products from './src/Products';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,11 @@ export default function App() {
           name='landing'
           component={LandingPage}
           options={{headerShown:false}}
+        />
+         <Stack.Screen
+          name='products'
+          component={Products}
+          options={{headerTitle:'Products'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -7,11 +7,15 @@ import Loader from './Loader';
 
 const Category = ({ data, navigation }) => (
 
-    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 140, }} onPress={() => navigation.navigate('cate', {
+    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 140, }} onPress={() => navigation.navigate('products', {
         categoryName: data
     })}>
         {data == 'jewelery' ? (
-            <ImageBackground source={require('../assets/jewelery.png')} resizeMode="cover" style={styles.image} imageStyle={{ borderRadius: 16, opacity: 0.4 }}>
+            <ImageBackground 
+                source={require('../assets/jewelery.png')} 
+                resizeMode="cover" 
+                style={styles.image} 
+                imageStyle={{ borderRadius: 16, opacity: 0.4 }}>
                 <Text style={styles.title}>{data}</Text>
             </ImageBackground>
 
