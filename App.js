@@ -6,6 +6,7 @@ import Categories from './src/Categories';
 import LandingPage from './src/LandingPage';
 import Products from './src/Products';
 import ProductDetails from './src/ProductDetails';
+import Cart from './src/Cart';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +34,11 @@ export default function App() {
           name='productDetails'
           component={ProductDetails}
           options={{headerTitle:'Details'}}
+        />
+          <Stack.Screen
+          name='cart'
+          component={Cart}
+          options={{headerTitle:'Cart'}}
         />
       </Stack.Navigator>
     </NavigationContainer>

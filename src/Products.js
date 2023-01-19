@@ -13,16 +13,21 @@ const Products = ({ route, navigation }) => {
     const [prodItems, setProdItems] = useState({});
     const [loading, setLoading] = useState(true)
 
+    useEffect(() => {
+        loadProductItems()
+    }, []);
     const loadProductItems = async () => {
 
         await fetch('https://fakestoreapi.com/products/category/' + categoryName)
             .then(res => res.json())
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 setProdItems(res)
                 setLoading(false)
             })
     }
+   
+    
 
     useEffect(() => {
         loadProductItems()

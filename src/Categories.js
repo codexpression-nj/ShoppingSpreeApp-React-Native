@@ -64,7 +64,7 @@ const Categories = ({ navigation }) => {
         await fetch('https://fakestoreapi.com/products/categories')
             .then(res => res.json())
             .then((res) => {
-                console.log(res);
+                // console.log(res);
                 setcategories(res)
             })
     }

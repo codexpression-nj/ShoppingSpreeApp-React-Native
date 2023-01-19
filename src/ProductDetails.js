@@ -12,7 +12,7 @@ const animation = {
 // create a component
 const ProductDetails = ({ navigation, route }) => {
     const { item } = route.params;
-    console.log(item);
+    // console.log(item);
     return (
         <SafeAreaView style={styles.container}>
 
@@ -37,8 +37,8 @@ const ProductDetails = ({ navigation, route }) => {
                     <Text style={styles.price}>R{item.price}</Text>
 
                 </View>
-                <TouchableOpacity style={styles.addCartBtn}>
-                    <Text style={{ color: 'white', alignSelf: 'center', alignItems: 'center' }}>Add To Card</Text>
+                <TouchableOpacity style={styles.addCartBtn} onPress={()=> navigation.navigate('cart')}>
+                    <Text style={{ color: 'white', alignSelf: 'center', alignItems: 'center' }}>Add To Cart</Text>
                 </TouchableOpacity>
             </View>
 
