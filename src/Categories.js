@@ -7,7 +7,7 @@ import Loader from './Loader';
 
 const Category = ({ data, navigation }) => (
 
-    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 140, }} onPress={() => navigation.navigate('products', {
+    <TouchableOpacity style={{ marginBottom: 16, borderRadius: 16, height: 160, }} onPress={() => navigation.navigate('products', {
         categoryName: data
     })}>
         {data == 'jewelery' ? (

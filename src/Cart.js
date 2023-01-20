@@ -53,7 +53,7 @@ const Cart = () => {
         <View>
           
                         <View>
-                            <Text>{data.category}</Text>
+                            <Text>{data.quantity}</Text>
                            <Text></Text>
                         </View>
 
@@ -65,7 +65,7 @@ const Cart = () => {
             {/* <ScrollView> */}
 
                 <FlatList
-                    data={productList}
+                    data={products}
                     renderItem={renderItem}
 
                 />
