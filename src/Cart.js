@@ -24,13 +24,17 @@ const Cart = () => {
                 console.log(res.products);
                 products.map((prod) => {
                     fetch('https://fakestoreapi.com/products/' + prod.productId)
-                        .then(resp => res.json())
+                        .then(resp => resp.json())
                         .then((resp) => {
-                            console.log(resp);
-                            prods.push(resp)
+                            console.log(resp.category);
+                            setProductList(resp)
+                            // prods.push(resp.category)
+                            // console.log(prods);
+
                         })
                 })
-                setProductList(prods)
+
+                // setProductList(prods)
 
             })
     }
@@ -42,18 +46,21 @@ const Cart = () => {
             fetch('https://fakestoreapi.com/products/' + prod.productId)
                 .then(res => res.json())
                 .then((res) => {
-                    console.log(res);
                     prods.push(res)
+                    console.log(red);
+
                 })
         })
+        
     }
     const renderItem = ({ item}) => <ProductView data={item}/>;
 
     const ProductView = ({ data }) => (
+        
         <View>
           
                         <View>
-                            <Text>{data.quantity}</Text>
+                            <Text>{data.productId}</Text>
                            <Text></Text>
                         </View>
 
@@ -69,7 +76,7 @@ const Cart = () => {
                     renderItem={renderItem}
 
                 />
-
+              
 
 
             {/* </ScrollView> */}
