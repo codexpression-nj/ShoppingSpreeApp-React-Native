@@ -13,70 +13,74 @@ const Cart = () => {
         loadCart()
     }, []);
     const loadCart = async () => {
-    // setProductList([])
-        fetch('https://fakestoreapi.com/carts/2')
-            .then(res => res.json())
-            .then((res) => {
-                // console.log(res.products);
-                setProducts(res.products)
-                // setLoading(false)
-                // getProductDetails()
-                console.log(res.products);
-                products.map((prod) => {
-                    fetch('https://fakestoreapi.com/products/' + prod.productId)
-                        .then(resp => resp.json())
-                        .then((resp) => {
-                            console.log(resp.category);
-                            setProductList(resp)
-                            // prods.push(resp.category)
-                            // console.log(prods);
+        // setProductList([])
+        try {
+            const response = await fetch('https://fakestoreapi.com/carts/2')
+            const json = await response.json();
+            console.log(json);
+            setProducts(json.products)
+            // getProductDetails()
+            if (products) {
+                products.map(async (prod) => {
+                    const responsepr = await fetch('https://fakestoreapi.com/products/' + prod.productId)
+                        .then(res => res.json())
+                        .then((res) => {
+                            prods.push(res)
+                            console.log(res);
 
                         })
                 })
+                setProductList(prods)
 
-                // setProductList(prods)
 
-            })
+            }
+
+
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     const getProductDetails = async () => {
-        let prodList =[]
+        let prodList = []
         console.log('userCart');
+        console.log(products);
         products.map((prod) => {
             fetch('https://fakestoreapi.com/products/' + prod.productId)
                 .then(res => res.json())
                 .then((res) => {
                     prods.push(res)
-                    console.log(red);
+                    console.log(res);
 
                 })
         })
-        
+
     }
-    const renderItem = ({ item}) => <ProductView data={item}/>;
+    const renderItem = ({ item }) => <ProductView data={item} />;
 
     const ProductView = ({ data }) => (
-        
-        <View>
-          
-                        <View>
-                            <Text>{data.productId}</Text>
-                           <Text></Text>
-                        </View>
 
-            
+        <View>
+
+            <View>
+                <Text>{data.productId}</Text>
+                <Text></Text>
+
+            </View>
+
+
         </View>
     )
     return (
         <View style={styles.container}>
             {/* <ScrollView> */}
 
-                <FlatList
-                    data={products}
-                    renderItem={renderItem}
+            <FlatList
+                data={products}
+                renderItem={renderItem}
 
-                />
-              
+            />
+
 
 
             {/* </ScrollView> */}
