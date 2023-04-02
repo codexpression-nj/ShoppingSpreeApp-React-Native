@@ -1,89 +1,49 @@
 //import liraries
 import React, { Component, useEffect, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 // create a component
 const Cart = () => {
     const [userCart, setUserCart] = useState([])
-    const [products, setProducts] = useState([])
+    const [products, setProducts] = useState([{}])
     const [productList, setProductList] = useState([])
+    // const [cartItems, setCartItems] = useState([])
     var prods = []
+    var cartItems = []
 
     useEffect(() => {
-        loadCart()
-    }, []);
-    const loadCart = async () => {
-        // setProductList([])
-        try {
-            const response = await fetch('https://fakestoreapi.com/carts/2')
-            const json = await response.json();
-            console.log(json);
-            setProducts(json.products)
-            // getProductDetails()
-            if (products) {
-                products.map(async (prod) => {
-                    const responsepr = await fetch('https://fakestoreapi.com/products/' + prod.productId)
-                        .then(res => res.json())
-                        .then((res) => {
-                            prods.push(res)
-                            console.log(res);
+        retrieveData = async () => {
+            try {
+              const value = await AsyncStorage.getItem('cartNumber');
+              if (value !== null) {
+                // We have data!!
+                console.log(value);
+                cartItems = value
+                setProducts(value)
 
-                        })
-                })
-                setProductList(prods)
-
-
+              }else{
+                console.log("before");
+              }
+            } catch (error) {
+              // Error retrieving data
+              console.log(error);
             }
-
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
-    const getProductDetails = async () => {
-        let prodList = []
-        console.log('userCart');
+          }
+        retrieveData()
         console.log(products);
-        products.map((prod) => {
-            fetch('https://fakestoreapi.com/products/' + prod.productId)
-                .then(res => res.json())
-                .then((res) => {
-                    prods.push(res)
-                    console.log(res);
-
-                })
-        })
-
-    }
-    const renderItem = ({ item }) => <ProductView data={item} />;
-
-    const ProductView = ({ data }) => (
-
-        <View>
-
-            <View>
-                <Text>{data.productId}</Text>
-                <Text></Text>
-
-            </View>
-
-
-        </View>
-    )
+   
+    }, []);
+   
+    const renderItem = ({ item }) => (
+        <Text>{`Product ID: ${item.productId}, Quantity: ${item.quantity}`}</Text>
+      );
     return (
         <View style={styles.container}>
-            {/* <ScrollView> */}
-
             <FlatList
                 data={products}
                 renderItem={renderItem}
-
             />
-
-
-
-            {/* </ScrollView> */}
         </View>
     );
 };
