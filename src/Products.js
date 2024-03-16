@@ -5,6 +5,7 @@ import { View, Text, ImageBackground, StyleSheet, FlatList, Image, Platform, Pre
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { SharedElement } from 'react-native-shared-element';
 import Loader from './Loader';
+import { AntDesign } from '@expo/vector-icons';
 
 
 // create a component
@@ -67,7 +68,8 @@ const Products = ({ route, navigation }) => {
                                             {item.price}
                                         </Text>
                                         <TouchableOpacity>
-                                            <Ionicons name="md-heart-outline" size={16} color="black" />
+                                        <AntDesign name="hearto" size={16} color="black" />
+                                            {/* <Ionicons name="md-heart-outline" size={16} color="black" /> */}
                                         </TouchableOpacity>
                                     </View>
 

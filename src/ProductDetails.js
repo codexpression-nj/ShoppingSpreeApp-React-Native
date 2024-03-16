@@ -4,6 +4,8 @@ import { View, Text, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'r
 import * as Animatable from 'react-native-animatable'
 import { SharedElement } from 'react-native-shared-element';
 import Ionicons from '@expo/vector-icons/Ionicons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 const animation = {
     0: { opacity: 0, translateY: 100 },
@@ -20,9 +22,11 @@ const ProductDetails = ({ navigation, route }) => {
                 <Image source={{ uri: item.image }} style={styles.image} />
             </View>
             <View style={styles.review}>
-                <Ionicons name="md-heart-outline" size={24} color="black" />
+            <AntDesign name="hearto" size={24} color="black" />
+                {/* <Ionicons name="md-heart-outline" size={24} color="black" /> */}
                 <View style={styles.rating}>
-                    <Ionicons name="md-star-outline" size={16} color="orange" />
+                <MaterialIcons name="star-rate" size={16} color="orange" />
+                    {/* <Ionicons name="md-star-outline" size={16} color="orange" /> */}
                     <Text> {item.rating.rate}  </Text>
                     <Text>({item.rating.count} reviews)</Text>
                 </View>
